@@ -15,5 +15,25 @@ function displayData(data){
     })
 })}
 
+//select the web user's input and the filter button
+var dateInputText = d3.select("#datetime")
+
+// Create function to filter through specific data items
+function select(){
+    //Prevent page from refreshing
+    d3.event.preventDefault();
+    //display input
+    console.log(dateInputText.property("value"));
+    //create a new table showing only the filterd data
+    var new_table = tableData.filter(event => event.datetime===dateInputText.property("value"))
+    //display the new table
+    displayData(new_table);
+}
+
+// event listener to handle change and click
+dateInputText.on("change", select)
+
 displayData(tableData)
+
+
 
